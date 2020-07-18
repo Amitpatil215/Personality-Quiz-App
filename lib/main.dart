@@ -38,12 +38,17 @@ class _MyAppState extends State<MyApp> {
 
   void _answerQuestions(int optionScore) {
     _totalScore +=optionScore;
-    print(_totalScore);
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
   }
 
+  void _resetQuiz(){
+    setState(() {
+      _questionIndex=0;
+      _totalScore=0;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +60,7 @@ class _MyAppState extends State<MyApp> {
         answerQuestions: _answerQuestions,
         questionIndex: _questionIndex,
         questions: _questions,)
-          : Result(_totalScore)
+          : Result(_totalScore,_resetQuiz)
     );
   }
 }
